@@ -1,4 +1,2 @@
-'use strict';
-
 // Define the `bonusMissionApp` module
-angular.module('bonusMissionApp', []);
+angular.module('bonusMissionApp', ['ui.router']);

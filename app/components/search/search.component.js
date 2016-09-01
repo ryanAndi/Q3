@@ -1,9 +1,9 @@
-// Register `example` component, along with its associated controller and template
+//TODO: Search box component
 angular.
 module('bonusMissionApp').
-component('exampleTest', {
-    templateUrl: 'example-test/example-test.component.html',
-    controller: function ExampleTestController() {
+component('search', {
+    templateUrl: 'components/search/search.component.html',
+    controller: function SearchController() {
         this.samples = [
             {
                 name: 'Sample 1',

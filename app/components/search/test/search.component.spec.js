@@ -1,13 +1,13 @@
-describe('exampleTest', function() {
+describe('searchComponentTest', function() {
 
-    // Load the module that contains the `example` component before each test
+    // Load the module that contains the `search` component before each test
     beforeEach(module('bonusMissionApp'));
 
     // Test the controller
-    describe('ExampleTestController', function() {
+    describe('SearchController', function() {
 
         it('should create a `samples` model with 3 samples', inject(function($componentController) {
-            var ctrl = $componentController('exampleTest');
+            var ctrl = $componentController('search');
 
             expect(ctrl.samples.length).toBe(3);
         }));
