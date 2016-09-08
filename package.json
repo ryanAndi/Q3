@@ -6,31 +6,33 @@
   "devDependencies": {
     "body-parser": "^1.5.2",
     "bower": "^1.7.7",
-    "gulp": "^3.9.1",
+    "browser-sync": "^2.15.0",
+    "del": "^2.2.2",
+    "event-stream": "^3.2.2",
     "express": "^4.7.2",
+    "gulp": "^3.9.1",
+    "gulp-angular-filesort": "^1.0.4",
+    "gulp-concat": "^2.4.3",
+    "gulp-htmlhint": "0.0.9",
+    "gulp-htmlmin": "^1.0.0",
+    "gulp-inject": "^1.1.1",
+    "gulp-jshint": "^1.9.2",
     "gulp-load-plugins": "^1.2.4",
+    "gulp-ng-html2js": "^0.1.8",
+    "gulp-order": "^1.1.1",
+    "gulp-sourcemaps": "^1.3.0",
+    "gulp-uglify": "^1.1.0",
     "http-server": "^0.9.0",
     "jasmine-core": "^2.4.1",
+    "jshint-stylish": "^1.0.0",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.3",
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.8",
     "main-bower-files": "^2.13.1",
+    "method-override": "^2.1.2",
     "protractor": "^3.2.2",
-    "event-stream": "^3.2.2",
-    "q": "^1.1.2",
-    "gulp-ng-html2js": "^0.1.8",
-    "gulp-htmlhint": "0.0.9",
-    "gulp-htmlmin": "^1.0.0",
-    "gulp-jshint": "^1.9.2",
-    "jshint-stylish": "^1.0.0",
-    "gulp-angular-filesort": "^1.0.4",
-    "gulp-sourcemaps": "^1.3.0",
-    "gulp-concat": "^2.4.3",
-    "gulp-uglify": "^1.1.0",
-    "gulp-order": "^1.1.1",
-    "gulp-inject": "^1.1.1",
-    "method-override": "^2.1.2"
+    "q": "^1.1.2"
   },
   "scripts": {
     "postinstall": "bower install",
@@ -42,8 +44,5 @@
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
     "protractor": "protractor e2e-tests/protractor.conf.js"
-  },
-  "dependencies": {
-    "del": "^2.2.2"
   }
 }

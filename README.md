@@ -7,8 +7,8 @@ The build structure was based on this [article](http://paislee.io/a-healthy-gulp
 **TODO**
 
 - Add styling (SASS?)
-- Add gulp watches (see above article)
-- Support unit testing
+- Add gulp watches (see above article) - DONE
+- Support unit testing - DONE
 - Support e2e testing
 - Fix gulp uglify
 - Setup ASOS mock server (see above article) 
@@ -43,23 +43,37 @@ Production:
 gulp build-app-prod
 ```
 
-### Run in Development
-
-1. Run `npm start`
-2. Navigate your browser to [http://localhost:8000/](http://localhost:8000/) to see the application 
-running.
-
 ### Unit Testing
-**TODO: Not tested yet**
- 
-We recommend using [Jasmine][jasmine] and [Karma][karma] for your unit tests/specs, but you are free
-to use whatever works for you.
 
-- Start Karma with `npm test`.
-- A browser will start and connect to the Karma server. Chrome and Firefox are the default browsers,
-  others can be captured by loading the same URL or by changing the `karma.conf.js` file.
-- Karma will sit and watch your application and test JavaScript files. To run or re-run tests just
-  change any of your these files.
+Run once:
+```
+gulp test
+```
+
+Run continuously (file watching):
+```
+gulp tdd
+```
+
+### Development mode
+
+Watches *app*, builds to *dist.dev* and reloads browser on any change. 
+
+```
+gulp watch-dev
+```
+
+### Run locally
+
+Development:
+```
+gulp serve-dev
+```
+
+Production:
+```
+gulp serve-prod
+```
 
 ### End-to-End Testing
 **TODO: Not tested yet**

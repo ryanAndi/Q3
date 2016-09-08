@@ -4,6 +4,9 @@ var del = require('del');
 var bowerFiles = require('main-bower-files');
 var es = require('event-stream');
 var Q = require('q');
+var KarmaServer = require('karma').Server;
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
 
 var paths = {
     scripts: ['app/**/*.js', '!app/**/*.spec.js'],
@@ -12,11 +15,25 @@ var paths = {
     distDev: './dist.dev',
     distProd: './dist.prod',
     distScriptsProd: './dist.prod/scripts',
-    scriptsDevServer: 'devServer/**/*.js'
+    scriptsDevServer: 'devServer/**/*.js',
+    karmaConfig: '/config/karma.conf.js'
 };
 
 
 var pipes = {};
+
+pipes.tested = function (done) {
+    new KarmaServer({
+        configFile: __dirname + paths.karmaConfig,
+        singleRun: true
+    }, done).start();
+};
+
+pipes.tdd = function (done) {
+    new KarmaServer({
+        configFile: __dirname + paths.karmaConfig
+    }, done).start();
+};
 
 pipes.orderedVendorScripts = function() {
     return plugins.order(['jquery.js', 'angular.js']);
@@ -136,20 +153,12 @@ pipes.builtAppProd = function() {
 
 // removes all compiled dev files
 gulp.task('clean-dev', function() {
-    var deferred = Q.defer();
-    del(paths.distDev, function() {
-        deferred.resolve();
-    });
-    return deferred.promise;
+    return del.sync(paths.distDev);
 });
 
 // removes all compiled production files
 gulp.task('clean-prod', function() {
-    var deferred = Q.defer();
-    del(paths.distProd, function() {
-        deferred.resolve();
-    });
-    return deferred.promise;
+    return del.sync(paths.distProd);
 });
 
 
@@ -190,16 +199,78 @@ gulp.task('build-index-dev', pipes.builtIndexDev);
 gulp.task('build-index-prod', pipes.builtIndexProd);
 
 // builds a complete dev environment
-gulp.task('build-app-dev', pipes.builtAppDev);
+gulp.task('build-app-dev', ['test'], pipes.builtAppDev);
 
 // builds a complete prod environment
-gulp.task('build-app-prod', pipes.builtAppProd);
+gulp.task('build-app-prod', ['test'], pipes.builtAppProd);
 
 // cleans and builds a complete dev environment
-gulp.task('clean-build-app-dev', ['clean-dev'], pipes.builtAppDev);
+gulp.task('clean-build-app-dev', ['clean-dev', 'test'], pipes.builtAppDev);
 
 // cleans and builds a complete prod environment
-gulp.task('clean-build-app-prod', ['clean-prod'], pipes.builtAppProd);
+gulp.task('clean-build-app-prod', ['clean-prod', 'test'], pipes.builtAppProd);
 
 // default task builds for prod
 gulp.task('default', ['clean-build-app-prod']);
+
+//Run test once and exit
+gulp.task('test', pipes.tested);
+
+//Watch for file changes and re-run tests on each change
+gulp.task('tdd', pipes.tdd);
+
+gulp.task('watch-dev', ['build-app-dev', 'validate-devserver-scripts'], function() {
+
+    browserSync({
+        server: {
+            baseDir: paths.distDev
+        }
+    });
+
+    // watch index
+    gulp.watch(paths.index, function() {
+        return pipes.builtIndexDev()
+            .pipe(browserSync.stream());
+    });
+
+    // watch app scripts
+    gulp.watch(paths.scripts, function() {
+        return pipes.builtAppScriptsDev()
+            .pipe(browserSync.stream());
+    });
+
+    // watch html partials
+    gulp.watch(paths.partials, function() {
+        return pipes.builtPartialsDev()
+            .pipe(browserSync.stream());
+    });
+
+    // watch styles
+    gulp.watch(paths.styles, function() {
+        return pipes.builtStylesDev()
+            .pipe(browserSync.stream());
+    });
+
+});
+
+// watch files for changes and reload
+gulp.task('serve-dev', ['build-app-dev'], function() {
+    browserSync({
+        server: {
+            baseDir: paths.distDev
+        }
+    });
+
+    gulp.watch(['*.html', 'styles/**/*.css', 'scripts/**/*.js'], {cwd: paths.distDev}, reload);
+});
+
+// watch files for changes and reload
+gulp.task('serve-prod', ['build-app-prod'], function() {
+    browserSync({
+        server: {
+            baseDir: paths.distProd
+        }
+    });
+
+    gulp.watch(['*.html', 'styles/**/*.css', 'scripts/**/*.js'], {cwd: paths.distProd}, reload);
+});
