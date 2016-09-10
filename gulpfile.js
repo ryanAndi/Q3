@@ -11,6 +11,7 @@ var reload = browserSync.reload;
 var paths = {
     scripts: ['app/**/*.js', '!app/**/*.spec.js'],
     index: './app/index.html',
+    styles: 'app/**/*.css',
     partials: ['app/**/*.html', '!app/index.html'],
     distDev: './dist.dev',
     distProd: './dist.prod',
@@ -108,6 +109,20 @@ pipes.scriptedPartials = function() {
         }));
 };
 
+pipes.builtStylesDev = function() {
+    return gulp.src(paths.styles)
+        .pipe(gulp.dest(paths.distDev));
+};
+
+pipes.builtStylesProd = function() {
+    return gulp.src(paths.styles)
+        .pipe(plugins.sourcemaps.init())
+        .pipe(plugins.minifyCss())
+        .pipe(plugins.sourcemaps.write())
+        .pipe(pipes.minifiedFileName())
+        .pipe(gulp.dest(paths.distProd));
+};
+
 pipes.validatedIndex = function() {
     return gulp.src(paths.index)
         .pipe(plugins.htmlhint())
@@ -122,10 +137,13 @@ pipes.builtIndexDev = function() {
     var orderedAppScripts = pipes.builtAppScriptsDev()
         .pipe(pipes.orderedAppScripts());
 
+    var appStyles = pipes.builtStylesDev();
+
     return pipes.validatedIndex()
         .pipe(gulp.dest(paths.distDev)) // write first to get relative path for inject
         .pipe(plugins.inject(orderedVendorScripts, {relative: true, name: 'bower'}))
         .pipe(plugins.inject(orderedAppScripts, {relative: true}))
+        .pipe(plugins.inject(appStyles, {relative: true}))
         .pipe(gulp.dest(paths.distDev));
 };
 
@@ -133,11 +151,13 @@ pipes.builtIndexProd = function() {
 
     var vendorScripts = pipes.builtVendorScriptsProd();
     var appScripts = pipes.builtAppScriptsProd();
+    var appStyles = pipes.builtStylesProd();
 
     return pipes.validatedIndex()
         .pipe(gulp.dest(paths.distProd)) // write first to get relative path for inject
         .pipe(plugins.inject(vendorScripts, {relative: true, name: 'bower'}))
         .pipe(plugins.inject(appScripts, {relative: true}))
+        .pipe(plugins.inject(appStyles, {relative: true}))
         .pipe(plugins.htmlmin({collapseWhitespace: true, removeComments: true}))
         .pipe(gulp.dest(paths.distProd));
 };
@@ -191,6 +211,12 @@ gulp.task('build-vendor-scripts-dev', pipes.builtVendorScriptsDev);
 
 // concatenates, uglifies, and moves vendor scripts into the prod environment
 gulp.task('build-vendor-scripts-prod', pipes.builtVendorScriptsProd);
+
+// compiles app sass and moves to the dev environment
+gulp.task('build-styles-dev', pipes.builtStylesDev);
+
+// compiles and minifies app sass to css and moves to the prod environment
+gulp.task('build-styles-prod', pipes.builtStylesProd);
 
 // validates and injects sources into index.html and moves it to the dev environment
 gulp.task('build-index-dev', pipes.builtIndexDev);

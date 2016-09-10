@@ -6,7 +6,7 @@ The build structure was based on this [article](http://paislee.io/a-healthy-gulp
 
 **TODO**
 
-- Add styling (SASS?)
+- Add styling - DONE
 - Add gulp watches (see above article) - DONE
 - Support unit testing - DONE
 - Support e2e testing
