@@ -34,6 +34,10 @@ a:hover {
   margin:0 auto;
 }
 
+.main-content {
+  margin:40px 0;
+}
+
 /*header*/
 
 nav {
@@ -65,4 +69,21 @@ nav a:hover span {
   display: block;
 }
 
-/*footer*/
+/*search 404*/
+
+.splash {
+  float: left;
+}
+
+.search-section {
+  width: 45%;
+  margin-top:-350px;
+  padding: 30px 0 30px 30px;
+  float: right;
+  background-color: #fff;
+  position: relative;
+}
+
+.search-listings {
+  clear: both;
+}
