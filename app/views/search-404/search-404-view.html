@@ -8,7 +8,7 @@
 		<button ng-click="search()" ng-disabled="searchform.$invalid"> Button </button>
 	</form>
 </div>
-	<ul ng-if="listings">
+	<ul ng-if="listings" class="search-listings">
 		<li ng-repeat="listing in listings">
 			<h2>{{listing.Title}}</h2>
 			<span>{{listing.Brand}}</span>

@@ -20,8 +20,9 @@
   margin:0;
   padding:0;
 }
+
 #font-test{
-  font-family: acremedium;
+  font-family: 'acremedium';
 }
 
 a {
@@ -89,4 +90,18 @@ nav a:hover span {
 
 .search-listings {
   clear: both;
+}
+
+@media (max-width: 974px) {
+  .wrap-content {
+    width: 100%;
+  }
+
+  .splash { display: none; }
+
+  .search-section {
+    width: 100%;
+    margin-top: 0;
+    float: left;
+  }
 }
