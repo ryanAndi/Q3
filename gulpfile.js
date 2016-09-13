@@ -11,7 +11,7 @@ var reload = browserSync.reload;
 var paths = {
     scripts: ['app/**/*.js', '!app/**/*.spec.js'],
     index: './app/index.html',
-    styles: 'app/**/*.css',
+    styles: ['app/**/*.css', 'app/**/*.ttf'],
     partials: ['app/**/*.html', '!app/index.html'],
     distDev: './dist.dev',
     distProd: './dist.prod',
