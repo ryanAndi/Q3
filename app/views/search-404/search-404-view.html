@@ -1,21 +1,22 @@
 <img src="http://content.asos-media.com/~/media/130516111203en-GB/unisex/generic-homepage/2016/05/gl-generic-hp-may-june.jpg?20160718T1149039290" alt="asos-generic" class="splash"/>
+
 <div class="search-section">
 	<h1>404</h1>
+	<h2>Oops! This page page does not exist.. or something has gone wrong..</h2>
+	<h2>But good news! We can still help you!</h2>
 	<form name="searchform" class="search-form">
-
 		<input type="text" ng-model="query" required />
-
-		<button ng-click="search()" ng-disabled="searchform.$invalid"> Button </button>
+		<button ng-click="search()" ng-disabled="searchform.$invalid"><span></span></button>
 	</form>
 </div>
-	<ul ng-if="listings" class="search-listings">
-		<li ng-repeat="listing in listings">
-			<h2>{{listing.Title}}</h2>
-			<span>{{listing.Brand}}</span>
-			<br/>
-			<span>{{listing.CurrentPrice}}</span>
-			<br/>
-			<img src="{{listing.ProductImageUrl[0]}}" alt="asd" height="100" width="100">
-		</li>
-	</ul>
-	<!-- <search></search> -->
+
+<ul ng-if="listings" class="search-listings">
+	<li ng-repeat="listing in listings">
+		<h2>{{listing.Title}}</h2>
+		<span>{{listing.Brand}}</span>
+		<br/>
+		<span>{{listing.CurrentPrice}}</span>
+		<br/>
+		<img src="{{listing.ProductImageUrl[0]}}" alt="asd" height="100" width="100">
+	</li>
+</ul>
