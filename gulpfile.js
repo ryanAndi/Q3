@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var cssnano = require('gulp-cssnano');
+var rename = require("gulp-rename");
 var del = require('del');
 var bowerFiles = require('main-bower-files');
 var es = require('event-stream');
@@ -11,7 +13,8 @@ var reload = browserSync.reload;
 var paths = {
     scripts: ['app/**/*.js', '!app/**/*.spec.js'],
     index: './app/index.html',
-    styles: ['app/**/*.css', 'app/**/*.ttf'],
+    styles: ['app/**/*.css'],
+    fonts: ['app/**/*.ttf', 'app/**/*.woff', 'app/**/*.woff2', 'app/**/*.eot'],
     partials: ['app/**/*.html', '!app/index.html'],
     distDev: './dist.dev',
     distProd: './dist.prod',
@@ -45,7 +48,7 @@ pipes.orderedAppScripts = function() {
 };
 
 pipes.minifiedFileName = function() {
-    return plugins.rename(function (path) {
+    return rename(function (path) {
         path.extname = '.min' + path.extname;
     });
 };
@@ -117,9 +120,19 @@ pipes.builtStylesDev = function() {
 pipes.builtStylesProd = function() {
     return gulp.src(paths.styles)
         .pipe(plugins.sourcemaps.init())
-        .pipe(plugins.minifyCss())
+        .pipe(cssnano())
         .pipe(plugins.sourcemaps.write())
         .pipe(pipes.minifiedFileName())
+        .pipe(gulp.dest(paths.distProd));
+};
+
+pipes.builtFontsDev = function() {
+    return gulp.src(paths.fonts)
+        .pipe(gulp.dest(paths.distDev));
+};
+
+pipes.builtFontsProd = function() {
+    return gulp.src(paths.fonts)
         .pipe(gulp.dest(paths.distProd));
 };
 
@@ -163,11 +176,11 @@ pipes.builtIndexProd = function() {
 };
 
 pipes.builtAppDev = function() {
-    return es.merge(pipes.builtIndexDev(), pipes.builtPartialsDev());
+    return es.merge(pipes.builtIndexDev(), pipes.builtPartialsDev(), pipes.builtFontsDev());
 };
 
 pipes.builtAppProd = function() {
-    return pipes.builtIndexProd();
+    return es.merge(pipes.builtIndexProd(), pipes.builtFontsProd());
 };
 
 
@@ -217,6 +230,10 @@ gulp.task('build-styles-dev', pipes.builtStylesDev);
 
 // compiles and minifies app sass to css and moves to the prod environment
 gulp.task('build-styles-prod', pipes.builtStylesProd);
+
+gulp.task('build-fonts-dev', pipes.builtFontsDev);
+
+gulp.task('build-fonts-prod', pipes.builtFontsProd);
 
 // validates and injects sources into index.html and moves it to the dev environment
 gulp.task('build-index-dev', pipes.builtIndexDev);
@@ -277,6 +294,12 @@ gulp.task('watch-dev', ['build-app-dev', 'validate-devserver-scripts'], function
             .pipe(browserSync.stream());
     });
 
+    // watch fonts
+    gulp.watch(paths.fonts, function() {
+        return pipes.builtFontsDev()
+            .pipe(browserSync.stream());
+    });
+
 });
 
 // watch files for changes and reload
@@ -287,7 +310,7 @@ gulp.task('serve-dev', ['build-app-dev'], function() {
         }
     });
 
-    gulp.watch(['*.html', 'styles/**/*.css', 'scripts/**/*.js'], {cwd: paths.distDev}, reload);
+    gulp.watch(['*.html', 'styles/**/*.css', 'scripts/**/*.js', 'fonts/**/*.*'], {cwd: paths.distDev}, reload);
 });
 
 // watch files for changes and reload
@@ -298,5 +321,5 @@ gulp.task('serve-prod', ['build-app-prod'], function() {
         }
     });
 
-    gulp.watch(['*.html', 'styles/**/*.css', 'scripts/**/*.js'], {cwd: paths.distProd}, reload);
+    gulp.watch(['*.html', 'styles/**/*.css', 'scripts/**/*.js', 'fonts/**/*.*'], {cwd: paths.distProd}, reload);
 });

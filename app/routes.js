@@ -16,7 +16,7 @@ config(['$stateProvider', '$urlRouterProvider',
                 controller: "search404View"
             })
             .state('predictive404', {
-                url: "/predictive",
+                url: "/predictive?asosUrl",
                 templateUrl: "views/predictive-404/predictive-404-view.html",
                 controller: "predictive404View"
             })
