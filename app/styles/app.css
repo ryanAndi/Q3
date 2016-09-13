@@ -3,105 +3,136 @@
 @font-face {
     font-family: 'acremedium';
     src: url(../fonts/acre-medium-webfont.eot);
-    src: url(../fonts/acre-medium-webfont.eot?#iefix) format('embedded-opentype'),
-         url(../fonts/acre-medium-webfont.woff2) format('woff2'),
-         url(../fonts/acre-medium-webfont.woff) format('woff'),
-         url(../fonts/acre-medium-webfont.ttf) format('truetype'),
-         url(../fonts/acre-medium-webfont.svg#acremedium) format('svg');
+    src: url(../fonts/acre-medium-webfont.eot?#iefix) format('embedded-opentype'), url(../fonts/acre-medium-webfont.woff2) format('woff2'), url(../fonts/acre-medium-webfont.woff) format('woff'), url(../fonts/acre-medium-webfont.ttf) format('truetype'), url(../fonts/acre-medium-webfont.svg#acremedium) format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 * {
-  font-family: Georgia, serif;
-  -webkit-font-smoothing: antialiased;
-  color: #000;
-  margin:0;
-  padding:0;
+    font-family: Georgia, serif;
+    -webkit-font-smoothing: antialiased;
+    color: #000;
+    margin: 0;
+    padding: 0;
 }
 
-#font-test{
-  font-family: 'acremedium';
+h1, h2, h3, h4 {
+  font-family: 'acremedium', Georgia, serif;
+  -webkit-font-smoothing: auto;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: lighter;
+  letter-spacing: 3px;
 }
 
 a {
     background-color: transparent;
 }
-a:active,
-a:hover {
+a:active, a:hover {
     outline: 0;
 }
 
+.buttons {
+  margin-top: 40px;
+}
+.buttons a {
+  background: #4a85eb;
+  color: #fff;
+  font-family: 'acremedium', Georgia, serif;
+  font-size: 1.2em;
+  -webkit-font-smoothing: auto;
+  text-decoration: none;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  float: left;
+  padding: 20px;
+  margin-right: 10px;
+}
+.buttons a span {
+  color: #fff;
+  font-family: 'acremedium', Georgia, serif;
+  -webkit-font-smoothing: auto;
+  text-decoration: none;
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.6em;
+  display: block;
+  text-align: center;
+}
+
 .wrap-content {
-  width: 974px;
-  margin:0 auto;
+    width: 974px;
+    margin: 0 auto;
 }
 
 .main-content {
-  margin:40px 0;
+    margin: 40px 0;
 }
 
 /*header*/
 
 nav {
-  height: 34px;
-  width:100%;
-  background-color:#242424;
+    height: 34px;
+    width: 100%;
+    background-color: #242424;
 }
 
 nav a {
-  background-color: #fff;
-  padding: 3px 15px 4px;
-  margin-top: 3px;
-  text-decoration: none;
-  display: inline-block;
+    background-color: #fff;
+    padding: 3px 15px 4px;
+    margin-top: 3px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 nav a span {
-  font-size: 0.74em;
-  line-height: 2.027027em;
-  border-bottom: 1px solid #999;
+    font-size: 0.74em;
+    line-height: 2.027027em;
+    border-bottom: 1px solid #999;
 }
 
 nav a:hover span {
-  color: #999;
+    color: #999;
 }
 
 .logo {
-  margin-top:20px;
-  display: block;
+    margin-top: 20px;
+    display: block;
 }
 
 /*search 404*/
 
 .splash {
-  float: left;
+    float: left;
 }
 
 .search-section {
-  width: 45%;
-  margin-top:-350px;
-  padding: 30px 0 30px 30px;
-  float: right;
-  background-color: #fff;
-  position: relative;
+    width: 45%;
+    margin-top: -350px;
+    padding: 30px 0 30px 30px;
+    float: right;
+    background-color: #fff;
+    position: relative;
 }
 
 .search-listings {
-  clear: both;
+    clear: both;
 }
 
 @media (max-width: 974px) {
-  .wrap-content {
-    width: 100%;
-  }
-
-  .splash { display: none; }
-
-  .search-section {
-    width: 100%;
-    margin-top: 0;
-    float: left;
-  }
+    .wrap-content {
+        width: 100%;
+    }
+    .splash {
+        display: none;
+    }
+    .search-section {
+        width: 100%;
+        margin-top: 0;
+        float: left;
+    }
 }
