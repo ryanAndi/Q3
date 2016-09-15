@@ -9,14 +9,3 @@
 		<button ng-click="search()" ng-disabled="searchform.$invalid"><span></span></button>
 	</form>
 </div>
-
-<ul ng-if="listings" class="search-listings">
-	<li ng-repeat="listing in listings">
-		<h2>{{listing.Title}}</h2>
-		<span>{{listing.Brand}}</span>
-		<br/>
-		<span>{{listing.CurrentPrice}}</span>
-		<br/>
-		<img src="{{listing.ProductImageUrl[0]}}" alt="asd" height="100" width="100">
-	</li>
-</ul>
