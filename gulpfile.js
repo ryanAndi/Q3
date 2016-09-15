@@ -245,7 +245,7 @@ gulp.task('build-index-prod', pipes.builtIndexProd);
 gulp.task('build-app-dev', ['test'], pipes.builtAppDev);
 
 // builds a complete prod environment
-gulp.task('build-app-prod', ['test'], pipes.builtAppProd);
+gulp.task('build-app-prod', pipes.builtAppProd);
 
 // cleans and builds a complete dev environment
 gulp.task('clean-build-app-dev', ['clean-dev', 'test'], pipes.builtAppDev);
