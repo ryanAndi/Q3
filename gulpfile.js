@@ -11,7 +11,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 var paths = {
-    scripts: ['app/**/*.js', '!app/**/*.spec.js'],
+    scripts: ['app/app.js', 'app/**/*.js', '!app/**/*.spec.js'],
     index: './app/index.html',
     styles: ['app/**/*.css'],
     fonts: ['app/**/*.ttf', 'app/**/*.woff', 'app/**/*.woff2', 'app/**/*.eot'],
@@ -44,7 +44,7 @@ pipes.orderedVendorScripts = function() {
 };
 
 pipes.orderedAppScripts = function() {
-    return plugins.angularFilesort();
+    return plugins.order(paths.scripts);
 };
 
 pipes.minifiedFileName = function() {
@@ -72,7 +72,7 @@ pipes.builtAppScriptsProd = function() {
         .pipe(pipes.orderedAppScripts())
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.concat('app.min.js'))
-        .pipe(plugins.uglify())
+        // .pipe(plugins.uglify())
         .pipe(plugins.sourcemaps.write())
         .pipe(gulp.dest(paths.distScriptsProd));
 };
