@@ -132,6 +132,18 @@ service('AsosSearchService', function ($http) {
             "RRP": "",
             "Title": "Gap Crinkle Dress"
         }, {
+            "Brand": "Gap Kids",
+            "CurrentPrice": "NOW £13.00",
+            "HasMoreColours": false,
+            "IsInSet": false,
+            "PreviousPrice": "£17.50",
+            "ProductId": 978537,
+            "ProductImageUrl": [
+                "http://images.asos.com/inv/y/127/1178/978537/grngingh/image1l.jpg"
+            ],
+            "RRP": "",
+            "Title": "Gap Crinkle Dress"
+        },{
             "Brand": "Littlehorn",
             "CurrentPrice": "NOW £15.00",
             "HasMoreColours": false,
