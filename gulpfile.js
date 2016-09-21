@@ -105,7 +105,7 @@ pipes.builtPartialsDev = function() {
 
 pipes.builtPartialsProd = function() {
     return pipes.validatedPartials()
-        .pipe(gulp.dest(paths.distDev));
+        .pipe(gulp.dest(paths.distProd));
 };
 
 pipes.scriptedPartials = function() {
