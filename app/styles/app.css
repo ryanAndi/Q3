@@ -35,37 +35,6 @@ h2 {
   margin-top: 20px
 }
 
-li {
-  list-style: none;
-  float: left;
-  margin: 20px;
-  width: 28%;
-}
-
-h2.ng-scope {
-    text-align: center;
-}
-
-li > h2{
-  max-width: 170px;
-  font-family: Tahoma,Arial,sans-serif;
-  font-size: 10px;
-  margin-top: 0;
-  color: #666;
-}
-
-li > span{
-  font-weight: bold;
-  font-family: Tahoma,Arial,sans-serif;
-  font-size: 13px;
-  margin-top: 0;
-}
-
-/*li > img {
-  max-width: 100%;
-  max-height: 100%;
-}*/
-
 a {
     background-color: transparent;
 }
@@ -76,6 +45,7 @@ a:active, a:hover {
 .buttons {
   margin-top: 40px;
 }
+
 .buttons a {
   background: #4a85eb;
   color: #fff;
@@ -183,8 +153,41 @@ nav a:hover span {
   margin-top: -33px;
 }
 
+/* predictive 404 */
+
+li {
+  list-style: none;
+  float: left;
+  width: 33.33%;
+}
+
+li:nth-child(4) {
+  clear: left;
+}
+
+h2.ng-scope {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+li > .img-desc,
+li > img {
+  width: 96%;
+  margin:2%;
+}
+
+li > .img-desc {
+  margin-bottom: 40px;
+}
+
+.predictive-section {
+  overflow: hidden;
+}
+
+/**/
 @media (max-width: 974px) {
     .wrap-content {
+      padding:0 20px;
         width: 100%;
     }
     .splash {
@@ -195,4 +198,13 @@ nav a:hover span {
         margin-top: 0;
         float: left;
     }
+}
+@media (max-width: 568px) {
+  li { width: 100%; }
+  .buttons a {
+    width:100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 }
