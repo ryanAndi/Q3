@@ -84,9 +84,9 @@ service('AsosSearchService', function ($http) {
 
     var exampleJson = {
         "AlsoSearched": [
-            "dresses"
+            "jeans"
         ],
-        "Description": "dressses",
+        "Description": "jeans",
         "Facets": [{
             "FacetValues": [{
                 "Count": 4,
@@ -103,7 +103,7 @@ service('AsosSearchService', function ($http) {
             }, {
                 "Count": 3,
                 "Id": "base_colour_5",
-                "Name": "White"
+                "Name": "denim"
             }],
             "Id": "base_colour",
             "Name": "Colour",
@@ -118,43 +118,79 @@ service('AsosSearchService', function ($http) {
             "Name": "Current Price",
             "Sequence": 0
         }],
-        "ItemCount": 2,
+        "ItemCount": 6,
         "Listings": [{
-            "Brand": "Gap Kids",
-            "CurrentPrice": "NOW £13.00",
+            "Brand": "ASOS",
+            "CurrentPrice": "NOW £35.00",
             "HasMoreColours": false,
             "IsInSet": false,
             "PreviousPrice": "£17.50",
             "ProductId": 978537,
             "ProductImageUrl": [
-                "http://images.asos.com/inv/y/127/1178/978537/grngingh/image1l.jpg"
+                "http://images.asos-media.com/inv/media/9/4/4/2/6422449/darkstonewash/image1xl.jpg"
             ],
             "RRP": "",
-            "Title": "Gap Crinkle Dress"
+            "Title": "ASOS Kimmi Shrunken Boyfriend Jeans in Grace Dark Stonewash with Rips"
         }, {
-            "Brand": "Gap Kids",
-            "CurrentPrice": "NOW £13.00",
+            "Brand": "ASOS",
+            "CurrentPrice": "NOW £30.00",
             "HasMoreColours": false,
             "IsInSet": false,
             "PreviousPrice": "£17.50",
             "ProductId": 978537,
             "ProductImageUrl": [
-                "http://images.asos.com/inv/y/127/1178/978537/grngingh/image1l.jpg"
+                "http://images.asos-media.com/inv/media/8/3/4/8/6418438/white/image1xl.jpg"
             ],
             "RRP": "",
-            "Title": "Gap Crinkle Dress"
+            "Title": "ASOS Ridley High Waist Skinny Jeans in White with Busted Knee Rips"
         },{
-            "Brand": "Littlehorn",
-            "CurrentPrice": "NOW £15.00",
+            "Brand": "ASOS",
+            "CurrentPrice": "NOW £35.00",
             "HasMoreColours": false,
             "IsInSet": false,
             "PreviousPrice": "£19.00",
             "ProductId": 1004927,
             "ProductImageUrl": [
-                "http://images.asos.com/inv/x/127/1178/1004927/green/image1l.jpg"
+                "http://images.asos-media.com/inv/media/1/8/8/3/6343881/blackcoated/image1xl.jpg"
             ],
             "RRP": "",
-            "Title": "Littlehorn When My Love Grows Dress"
+            "Title": "ASOS 'SCULPT ME' Premium Jeans in Black Coated"
+        },{
+            "Brand": "NEW LOOK",
+            "CurrentPrice": "NOW £24.99",
+            "HasMoreColours": false,
+            "IsInSet": false,
+            "PreviousPrice": "£19.00",
+            "ProductId": 1004927,
+            "ProductImageUrl": [
+                "http://images.asos-media.com/inv/media/9/5/7/6/7176759/rinse/image1xl.jpg"
+            ],
+            "RRP": "",
+            "Title": "New Look Notch Hem Skinny Jeans"
+        },{
+            "Brand": "NEW LOOK",
+            "CurrentPrice": "NOW £24.99",
+            "HasMoreColours": false,
+            "IsInSet": false,
+            "PreviousPrice": "£19.00",
+            "ProductId": 1004927,
+            "ProductImageUrl": [
+                "http://images.asos-media.com/inv/media/0/9/6/6/7296690/black/image1xl.jpg"
+            ],
+            "RRP": "",
+            "Title": "New Look Coated Skinny Jean"
+        },{
+            "Brand": "FRENCH CONNECTION",
+            "CurrentPrice": "NOW £69.00",
+            "HasMoreColours": false,
+            "IsInSet": false,
+            "PreviousPrice": "£19.00",
+            "ProductId": 1004927,
+            "ProductImageUrl": [
+                "http://images.asos-media.com/inv/media/5/0/5/5/6785505/blueblack/image1xl.jpg"
+            ],
+            "RRP": "",
+            "Title": "French Connection Era Rebound Stretch Skinny Jeans"
         }],
         "RedirectUrl": "",
         "SortType": "PriceAscending"
