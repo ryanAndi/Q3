@@ -103,11 +103,6 @@ pipes.builtPartialsDev = function() {
         .pipe(gulp.dest(paths.distDev));
 };
 
-pipes.builtPartialsProd = function() {
-    return pipes.validatedPartials()
-        .pipe(gulp.dest(paths.distProd));
-};
-
 pipes.scriptedPartials = function() {
     return pipes.validatedPartials()
         .pipe(plugins.htmlhint.failReporter())
@@ -185,7 +180,7 @@ pipes.builtAppDev = function() {
 };
 
 pipes.builtAppProd = function() {
-    return es.merge(pipes.builtIndexProd(), pipes.builtPartialsProd(), pipes.builtFontsProd());
+    return es.merge(pipes.builtIndexProd(), pipes.builtFontsProd());
 };
 
 
